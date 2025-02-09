@@ -25,21 +25,13 @@ NGINX - Servidor Web
 git clone https://github.com/seu-usuario/finance-wallet.git
 cd finance-wallet
 
-2️⃣ Criar o ambiente com Docker
-
-docker-compose up -d --build
-
-3️⃣ Acessar o container Laravel
-
-docker exec -it finance_wallet_app bash
-
-4️⃣ Configurar Laravel
+2️⃣ Configurar Laravel
 
 composer install
 cp .env.example .env
 php artisan key:generate
 
-5️⃣ Configurar o Banco de Dados
+3️⃣ Configurar o Banco de Dados
 
 Edite o arquivo .env:
 
@@ -49,6 +41,14 @@ DB_PORT=5432
 DB_DATABASE=finance_wallet
 DB_USERNAME=user
 DB_PASSWORD=password
+
+4️⃣ Criar o ambiente com Docker
+
+docker-compose up -d --build
+
+5️⃣ Acessar o container Laravel
+
+docker exec -it finance_wallet_app bash
 
 6️⃣ Rodar as migrações
 
