@@ -21,4 +21,7 @@ RUN composer install --no-interaction --optimize-autoloader
 # Definir permissões para a pasta de cache e logs
 RUN chmod -R 777 storage bootstrap/cache
 
+# Roda as migrations do projeto
+RUN php artisan migrate --force
+
 CMD ["php-fpm"]
