@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+    container_name: finance_wallet_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./laravel:/var/www
+    depends_on:
+      - db
+    networks:
+      - finance_network
+
+  db:
+    image: postgres:16
+    container_name: finance_wallet_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: finance_wallet
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - finance_network
+
+networks:
+  finance_network:
+    driver: bridge
+
+volumes:
+  pgdata:
