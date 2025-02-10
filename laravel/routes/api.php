@@ -18,8 +18,10 @@ Route::prefix('auth')->group(function () {
 Route::middleware(['auth:sanctum'])->group(function () {
     // Rotas de transação
     Route::prefix('transactions')->group(function () {
-        Route::post('/transfer', [TransactionController::class, 'transfer']);
+        Route::get('/', [TransactionController::class, 'index']);
         Route::post('/deposit', [TransactionController::class, 'deposit']);
+        Route::post('/transfer', [TransactionController::class, 'transfer']);
+        Route::post('/reverse', [TransactionController::class, 'reverse']);
     });
 
     // Rotas de contas

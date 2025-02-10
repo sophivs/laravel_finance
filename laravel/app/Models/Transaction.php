@@ -9,7 +9,14 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sender_id', 'receiver_id', 'amount'];
+    protected $fillable = [
+        'sender_id',
+        'receiver_id',
+        'amount',
+        'transaction_type',
+        'status',
+        'reversed'
+    ];
 
     public function sender()
     {
