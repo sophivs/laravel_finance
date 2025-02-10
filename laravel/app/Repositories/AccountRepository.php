@@ -13,7 +13,7 @@ class AccountRepository implements AccountRepositoryInterface
         return Account::all();
     }
 
-    public function findById($id): Account
+    public function findById($id): ?Account
     {
         return Account::find($id);
     }
