@@ -2,16 +2,18 @@
 
 namespace App\Services;
 
-use App\Interfaces\Repositories\AccountRepositoryInterface;
+use App\Interfaces\AccountRepositoryInterface;
+use App\Models\Account;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Exception;
 
 class AccountService
 {
     protected $accountRepository;
 
-    public function __construct(AccountRepository $accountRepository)
+    public function __construct(AccountRepositoryInterface $accountRepository)
     {
         $this->accountRepository = $accountRepository;
     }
