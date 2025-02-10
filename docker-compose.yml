@@ -5,6 +5,8 @@ services:
     build:
       context: ./laravel
       dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
     container_name: finance_wallet_app
     restart: unless-stopped
     working_dir: /var/www
