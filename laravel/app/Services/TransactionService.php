@@ -7,6 +7,7 @@ use App\Repositories\TransactionRepository;
 use App\Services\AccountService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Exception;
 
 class TransactionService
@@ -39,7 +40,7 @@ class TransactionService
             return $transaction;
         } catch (Exception $e) {
             DB::rollBack();
-            throw new Exception("Erro ao processar depósito: " . $e->getMessage());
+            throw ValidationException::withMessages(['error' => 'Erro ao processar depósito: ' . $e->getMessage()]);
         }
     }
 
@@ -57,7 +58,7 @@ class TransactionService
             return $transaction;
         } catch (Exception $e) {
             DB::rollBack();
-            throw new Exception("Erro ao processar transferência: " . $e->getMessage());
+            throw ValidationException::withMessages(['error' => 'Erro ao processar transferência: ' . $e->getMessage()]);
         }
     }
 
@@ -65,10 +66,10 @@ class TransactionService
     {
         DB::beginTransaction();
         try {
-                $transaction = $this->transactionRepository->findById($transactionId);
+            $transaction = $this->transactionRepository->findById($transactionId);
 
             if (!$transaction || $transaction->reversed) {
-                throw new Exception("Transação inválida ou já revertida.");
+                throw ValidationException::withMessages(['error' => 'Transação inválida ou já revertida.']);
             }
 
             // Chama AccountService para reverter a transação
@@ -83,7 +84,7 @@ class TransactionService
             return $transaction;
         } catch (Exception $e) {
             DB::rollBack();
-            throw new Exception("Erro ao reverter transação: " . $e->getMessage());
+            throw ValidationException::withMessages(['error' => 'Erro ao reverter transação: ' . $e->getMessage()]);
         }
     }
 }

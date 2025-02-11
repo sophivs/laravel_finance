@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use OpenApi\Annotations as OA;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AccountController extends Controller
 {
@@ -54,8 +55,12 @@ class AccountController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $account = $this->accountService->getAccountById($id);
-        return $account ? response()->json($account) : response()->json(['error' => 'Conta não encontrada'], 404);
+        try {
+            $account = $this->accountService->getAccountById($id);
+            return response()->json($account);
+        } catch (NotFoundHttpException $e) {
+            return response()->json(['error' => 'Conta não encontrada'], 404);
+        }
     }
 
     /**

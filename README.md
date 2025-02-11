@@ -4,6 +4,8 @@
 
 O **Finance Wallet** é uma API de carteira financeira desenvolvida com **Laravel 10**, utilizando Docker e PostgreSQL. O objetivo é permitir que usuários realizem transferências e depósitos de dinheiro de forma segura e confiável, garantindo a validação de saldo e reversão de operações quando necessário.
 
+---
+
 ## 🚀 Tecnologias Utilizadas
 
 - Laravel 10 - Framework PHP
@@ -12,6 +14,8 @@ O **Finance Wallet** é uma API de carteira financeira desenvolvida com **Larave
 - PHP 8.2 - Versão do PHP utilizada
 - Composer - Gerenciador de dependências PHP
 - NGINX - Servidor Web
+
+---
 
 ## 🔧 Instalação e Configuração
 
@@ -39,7 +43,7 @@ DB_PASSWORD=password
 
 ### 4️⃣ Criar o ambiente com Docker
 
-docker-compose up -d --build
+docker-compose up -d ---build
 
 ### 5️⃣ Acessar o container Laravel
 
@@ -49,7 +53,9 @@ docker exec -it finance_wallet_app bash
 
 php artisan migrate
 
-🔗 Endpoints da API
+---
+
+## 🔗 Principais Endpoints da API
 
 🔹 Criar um usuário
 
@@ -97,11 +103,15 @@ Body:
   "amount": 200.00
 }
 
+---
+
 ## ✅ Testes
 
 Para rodar os testes automatizados:
 
 docker exec -it finance_wallet_app php artisan test
+
+---
 
 ## 🛠 Ferramentas Extras
 
@@ -111,7 +121,11 @@ Testes de Integração e Unitários: Garantindo a qualidade do código.
 
 Segurança: Uso de autenticação JWT e validação de transações.
 
+---
+
 ## 🚀 Desenvolvido por Sophia Victória
+
+---
 
 ## 🛠️ Possíveis Melhorias
 - Criar um sistema de notificação para transações;

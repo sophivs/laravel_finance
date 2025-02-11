@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Exception;
 
 class AccountService
@@ -29,7 +30,7 @@ class AccountService
         $account = $this->accountRepository->findById($id);
 
         if (!$account) {
-            throw ValidationException::withMessages(['error' => 'Conta não encontrada']);
+            throw new NotFoundHttpException('Conta não encontrada');
         }
 
         return $account;

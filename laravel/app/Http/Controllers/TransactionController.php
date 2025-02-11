@@ -56,7 +56,6 @@ class TransactionController extends Controller
             'amount' => 'required|numeric|min:0.01'
         ]);
 
-
         return response()->json(
             $this->transactionService->deposit($request->account_id, $request->amount)
         );
